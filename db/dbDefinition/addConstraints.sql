@@ -24,10 +24,41 @@ ADD CONSTRAINT [PK_AccreditationID] PRIMARY KEY CLUSTERED ([AccreditationID])
 GO
 
 ALTER TABLE [dbo].[Bursary_Fund]
-ADD CONSTRAINT [PK_BursaryFund] 
-PRIMARY KEY CLUSTERED ([BursaryFundID])
- 
+    ADD CONSTRAINT [PK_BursaryFund] 
+        PRIMARY KEY CLUSTERED ([BursaryFundID])
 GO
+
+-- Institution Fund Allocation Constraints
+ALTER TABLE [dbo].[Institution_Fund_Allocation]
+    ADD CONSTRAINT [PK_Institution_Fund_Allocation]
+        PRIMARY KEY CLUSTERED ([InstitutionFundAllocationID])
+GO
+
+ALTER TABLE [dbo].[Institution_Fund_Allocation]
+    ADD CONSTRAINT [FK_Institution_Fund_Allocation_Institute_Info_InstituteOD]
+        FOREIGN KEY ([InstituteID])
+        REFERENCES [dbo].[Institute_Info]([InstituteID])
+GO
+
+ALTER TABLE [dbo].[Institution_Fund_Allocation]
+    ADD CONSTRAINT [FK_Institution_Fund_Allocation_Bursary_Fund_BursaryFundID]
+        FOREIGN KEY ([BursaryFundID])
+        REFERENCES [dbo].[Bursary_Fund]([BursaryFundID])
+GO
+
+ALTER TABLE [dbo].[Institution_Fund_Allocation]
+    ADD CONSTRAINT [CHK_Institution_Fund_Allocation_AllocatedAmount]
+        CHECK ([AllocatedAmount] >= 0)
+GO
+
+ALTER TABLE [dbo].[Institution_Fund_Allocation]
+    ADD CONSTRAINT [CHK_Institution_Fund_Allocation_AllocatedRemainingAmount]
+        CHECK ([AllocatedRemainingAmount] >= 0)
+GO
+
+ALTER TABLE [dbo].[Institution_Fund_Allocation]
+    ADD CONSTRAINT [CHK_Institution_Fund_Allocation_AllocatedAmount_Fundable]
+        CHECK ([AllocatedAmount] <= [dbo].[udfGetBursary_FundRemaingAmount]([BursaryFundID]))
 
 ALTER TABLE [dbo].[Application_Status]
 ADD CONSTRAINT [PK_ApplicationStatus] PRIMARY KEY CLUSTERED ([Index])
