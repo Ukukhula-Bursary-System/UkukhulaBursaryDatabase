@@ -1,16 +1,17 @@
 CREATE VIEW funded_institutions AS
-SELECT   
+SELECT
     Institute_Info.InstituteName,
     Institution_Fund_Allocation.AllocatedAmount,
+    Institution_Fund_Allocation.AllocatedRemainingAmount,
     Contact_Details.PhoneNumber,
     Contact_Details.Email
-FROM   
+FROM
     [BBD_BursaryDB].[dbo].[Institute_Info]
-JOIN   
+JOIN
     [BBD_BursaryDB].[dbo].[Institution_Fund_Allocation]
-ON   
+ON
     Institute_Info.InstituteID = Institution_Fund_Allocation.InstituteID
-JOIN   
+JOIN
     [BBD_BursaryDB].[dbo].[Contact_Details]
-ON   
+ON
     Institute_Info.ContactDetailsID = Contact_Details.ContactDetailsID;
