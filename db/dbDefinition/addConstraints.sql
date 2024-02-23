@@ -1,25 +1,25 @@
-USE BBD_BursaryDB3;
+USE BBD_BursaryDB;
 GO
 
--- Application_Status Constraints
+-- Application_Status PK Constraint
 ALTER TABLE [dbo].[Application_Status]
     ADD CONSTRAINT [PK_Application_Status.ApplicationStatusID]
         PRIMARY KEY CLUSTERED ([ApplicationStatusID])
 GO
 
--- Race Constraints
+-- Race PK Constraint
 ALTER TABLE [dbo].[Race]
     ADD CONSTRAINT [PK_Race.RaceID] 
         PRIMARY KEY CLUSTERED ([RaceID])
 GO
 
--- Roles Constraints
+-- Roles PK Constraint
 ALTER TABLE [dbo].[Roles]
     ADD CONSTRAINT [PK_Roles.RoleID]  
         PRIMARY KEY CLUSTERED ([RoleID])
 GO
 
--- Contact_Details Constraints
+-- Contact_Details PK Constraint
 ALTER TABLE [dbo].[Contact_Details]
     ADD CONSTRAINT [PK_ContactDetails.ContactDetailsID] 
         PRIMARY KEY CLUSTERED ([ContactDetailsID])
@@ -40,7 +40,7 @@ ALTER TABLE [dbo].[Institution_Fund_Allocation]
         PRIMARY KEY CLUSTERED ([InstitutionFundAllocationID])
 GO
 
--- User_Details Constraints
+-- User_Details PK Constraint
 ALTER TABLE [dbo].[User_Details]
     ADD CONSTRAINT [PK_User_Details.UserID] 
         PRIMARY KEY CLUSTERED ([UserID])
@@ -52,37 +52,60 @@ ALTER TABLE [dbo].[Institute_Info]
         PRIMARY KEY CLUSTERED ([InstituteID])
 GO
 
--- Institute_Application
+-- Institute_Application PK Constraint
 ALTER TABLE [dbo].[Institute_Application]
     ADD CONSTRAINT [PK_Institute_Application.InstituteApplicationID]
         PRIMARY KEY CLUSTERED ([InstituteApplicationID])
 GO
 
--- Student Constraints
+-- Student PK Constraint
 ALTER TABLE [dbo].[Student]
     ADD CONSTRAINT [PK_Student.StudentID] 
-    PRIMARY KEY CLUSTERED ([StudentID])
+        PRIMARY KEY CLUSTERED ([StudentID])
 GO
 
--- Head_Of_Department Constraints
+-- Head_Of_Department PK Constraint
 ALTER TABLE [dbo].[Head_Of_Department]
     ADD CONSTRAINT [PK_Head_Of_Department] 
         PRIMARY KEY CLUSTERED ([HeadOfDepartmentID])
 GO
 
--- Bursary_Applicants Constraints
+-- Bursary_Applicants PK Constraint
 ALTER TABLE [dbo].[Bursary_Applicants]
     ADD CONSTRAINT [PK_Bursary_Applicants.BursaryApplicantID] 
         PRIMARY KEY CLUSTERED ([BursaryApplicantID])
 GO
 
--- Document Constraints
+-- Document PK Constraint
 ALTER TABLE [dbo].[Document]
     ADD CONSTRAINT [PK_Document.DocumentID]
         PRIMARY KEY CLUSTERED ([DocumentID])
 GO
 
+-- BBDAdmin PK Constraint
+ALTER TABLE [dbo].[BBDAdmin]
+    ADD CONSTRAINT [PK_BBDAdmin.BBDAdminID]
+        PRIMARY KEY CLUSTERED ([BBDAdminID])
+GO
+
 -----------------------------------------------------------------------------------
+-- Bursary Fund Constraints
+ALTER TABLE [dbo].[Bursary_Fund]
+    ADD CONSTRAINT [PK_BursaryFund.BBDAdmin.BBDAdminID] 
+        FOREIGN KEY ([BBDAdminID])
+        REFERENCES [dbo].[BBDAdmin]
+GO
+
+ALTER TABLE [dbo].[Bursary_Fund]
+    ADD CONSTRAINT [CHK_Bursary_Fund.FundAmount.GreaterThanZero]
+        CHECK ([FundAmount] >= 0)
+GO
+
+ALTER TABLE [dbo].[Bursary_Fund]
+    ADD CONSTRAINT [CHK_Bursary_Fund.FundRemainingAmount.GreaterThanZero]
+        CHECK ([FundRemainingAmount] >= 0)
+GO
+
 -- Institution_Fund_Allocation Constraints
 ALTER TABLE [dbo].[Institution_Fund_Allocation]
     ADD CONSTRAINT [FK_Institution_Fund_Allocation_Institute_Info_InstituteID]
@@ -129,13 +152,19 @@ ALTER TABLE [dbo].[User_Details]
         UNIQUE ([ContactDetailsID])
 GO
 
--- Institute_Info Constraints
-ALTER TABLE [dbo].[Institute_Info]
-    ADD CONSTRAINT [FK_Institute_Info.Institute_Application.InstituteApplicationID]
-        FOREIGN KEY ([InstituteApplicationID])
-        REFERENCES [dbo].[Institute_Application]([InstituteApplicationID])
+-- BBDAdmin PK Constraint
+ALTER TABLE [dbo].[BBDAdmin]
+    ADD CONSTRAINT [FK_BBDAdmin.User_Details.UserID]
+        FOREIGN KEY ([UserID])
+        REFERENCES [dbo].[User_Details]([UserID])
 GO
 
+ALTER TABLE [dbo].[BBDAdmin]    
+    ADD CONSTRAINT [UNQ_BBDAdmin.UserID]
+        UNIQUE ([UserID])
+GO
+
+-- Institute_Info Constraints
 ALTER TABLE [dbo].[Institute_Info]
     ADD CONSTRAINT [FK_Institute_Info.ContactDetailsID]
         FOREIGN KEY ([ContactDetailsID])
@@ -147,11 +176,23 @@ ALTER TABLE [dbo].[Institute_Info]
         UNIQUE ([ContactDetailsID])
 GO
 
+ALTER TABLE [dbo].[Institute_Info]
+    ADD CONSTRAINT [FK_Institute_Info.BBDAdmin.BBDAdminID]
+        FOREIGN KEY ([BBDAdminID])
+        REFERENCES [dbo].[BBDAdmin]
+GO
+
 -- Institute_Application
 ALTER TABLE [dbo].[Institute_Application]
     ADD CONSTRAINT [FK_Institute_Application.Application_Status.ApplicationStatusID]
         FOREIGN KEY ([ApplicationStatusID])
         REFERENCES [dbo].[Application_Status]([ApplicationStatusID])
+GO
+
+ALTER TABLE [dbo].[Institute_Application]
+    ADD CONSTRAINT [FK_Institute_Application.Institute_Info.InstituteID]
+        FOREIGN KEY ([InstituteID])
+        REFERENCES [dbo].[Institute_Info]([InstituteID])
 GO
 
 -- Student Constraints
@@ -192,15 +233,15 @@ GO
 
 -- Bursary_Applicants Constraints
 ALTER TABLE [dbo].[Bursary_Applicants]
-    ADD CONSTRAINT [FK_Bursary_Applicants.Head_Of_Department.HeadOfDepartmentID]
-        FOREIGN KEY ([HeadOfDepartmentID])
-        REFERENCES [dbo].[Head_Of_Department] ([HeadOfDepartmentID])
+    ADD CONSTRAINT [FK_Bursary_Applicants.Application_Status.ApplicationStatusID]
+        FOREIGN KEY ([BursaryApplicationStatusID])
+        REFERENCES [dbo].[Application_Status] ([ApplicationStatusID])
 GO
 
 ALTER TABLE [dbo].[Bursary_Applicants]
-    ADD CONSTRAINT [FK_Bursary_Applicants.ApplicantStatus.ApplicationStatusID]
-        FOREIGN KEY ([BursaryApplicantStatusID])
-        REFERENCES [dbo].[Application_Status] ([ApplicationStatusID])
+    ADD CONSTRAINT [FK_Bursary_Applicants.Head_Of_Department.HeadOfDepartmentID]
+        FOREIGN KEY ([HeadOfDepartmentID])
+        REFERENCES [dbo].[Head_Of_Department] ([HeadOfDepartmentID])
 GO
 
 ALTER TABLE [dbo].[Bursary_Applicants]
@@ -216,13 +257,19 @@ ALTER TABLE [dbo].[Bursary_Applicants]
 GO
 
 ALTER TABLE [dbo].[Bursary_Applicants]
-    ADD CONSTRAINT [UNQ_Bursary_Applicants.InstituteFundAllocationID]
-        UNIQUE ([InstituteFundAllocationID])
+    ADD CONSTRAINT [FK_Bursary_Applicants.BBDAdmin.BBDAdminID]
+        FOREIGN KEY ([BBDAdminID])
+        REFERENCES [dbo].[BBDAdmin]([BBDAdminID])
 GO
 
 ALTER TABLE [dbo].[Bursary_Applicants]
     ADD CONSTRAINT [CHK_Bursary_Applicants.BursaryAmount_Valid]
         CHECK ([BursaryAmount] <= [dbo].[udfGetInstitution_Fund_AllocationRemainingAmount]([InstituteFundAllocationID]))
+GO
+
+ALTER TABLE [dbo].[Bursary_Applicants]
+    ADD CONSTRAINT [CHK_Bursary_Applicants.BursaryAmount.GreaterOrEqualToZero]
+        CHECK ([BursaryAmount] >= 0)
 GO
 
 -- Document Constraints
@@ -235,22 +282,4 @@ GO
 ALTER TABLE [dbo].[Document]
     ADD CONSTRAINT [UNQ_Document.BursaryApplicantID]
         UNIQUE ([BursaryApplicantID])
-GO
-
-
-ALTER TABLE BBD_ADMIN
-    ADD CONSTRAINT FK_BBD_ADMIN_USER_DETAILS_USERID
-        FOREIGN KEY (UserID)
-        REFERENCES USER_DETAILS(UserID)
-
-    ALTER TABLE BBD_ADMIN
-        ADD CONSTRAINT PK_BBD_ADMIN_BBDADMINID
-            PRIMARY KEY CLUSTERED ([BBDAdminID]);
-    
-
-
--- Bursary Fund Constraints
-ALTER TABLE [dbo].[Bursary_Fund]
-    ADD [BBDAdminID] INT
-     FOREIGN KEY ([BBDAdminID]) REFERENCES [dbo].[BBD_Admin]([BBDAdminID])
 GO

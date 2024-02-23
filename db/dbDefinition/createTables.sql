@@ -1,17 +1,13 @@
-CREATE DATABASE BBD_BursaryDB3
-
+CREATE DATABASE BBD_BursaryDB
 GO
 
-USE BBD_BursaryDB3;
-
+USE BBD_BursaryDB;
 GO
-
-
 
 CREATE TABLE [dbo].[Application_Status]
 (
   [ApplicationStatusID] INT IDENTITY(1,1) NOT NULL,
-  [Status] VARCHAR(8) NOT NULL,
+  [Status] VARCHAR(10) NOT NULL,
 );
 
 GO
@@ -19,34 +15,34 @@ GO
 CREATE TABLE [dbo].[Bursary_Applicants]
 (
   [BursaryApplicantID] INT IDENTITY(1,1) NOT NULL,
-  [StudentID] INT NOT NULL,
-  [HeadOfDepartmentID] INT NOT NULL,
-  [InstituteFundAllocationID] INT NOT NULL,
   [BursaryAmount] MONEY NOT NULL,
+  [AverageMarks] INT NOT NULL,
   [Motivation] VARCHAR (500) NOT NULL,
-  [BursaryApplicantStatusID] INT NOT NULL,
-  [AverageMarks] INT NOT NULL
+  [BursaryApplicationStatusID] INT NOT NULL,
+  [HeadOfDepartmentID] INT NOT NULL,
+  [StudentID] INT NOT NULL,
+  [InstituteFundAllocationID] INT NOT NULL,
+  [BBDAdminID] INT NOT NULL,
 );
-
 GO
 
 CREATE TABLE [dbo].[Document]
 (
-  [DocumentID] INT NOT NULL,
+  [DocumentID] INT IDENTITY(1,1) NOT NULL,
   [Transcript] VARCHAR(200) NOT NULL,
   [IdentityDocument]  VARCHAR(200) NOT NULL,
   [BursaryApplicantID] INT NOT NULL,
 );
- 
 GO
 
 CREATE TABLE [dbo].[Bursary_Fund]
 (
-  [BursaryFundID] INT IDENTITY(2024,1) NOT NULL,
+  [BursaryFundID] INT IDENTITY(1,1) NOT NULL,
   [FundAmount] MONEY NOT NULL DEFAULT 0,
   [FundRemainingAmount] MONEY NOT NULL,
   [StudentMaxAllocation] MONEY NOT NULL,
-  [FinacialDate] DATE NOT NULL
+  [FinacialDate] DATE NOT NULL,
+  [BBDAdminID] INT NOT NULL
 );
  
 GO
@@ -63,9 +59,10 @@ GO
 CREATE TABLE [dbo].[Institute_Application]
 (
   [InstituteApplicationID] INT IDENTITY(1,1) NOT NULL,
-  [Motivation] VARCHAR(100) NOT NULL,
-  [RejectionComment] VARCHAR(200),
+  [Motivation] VARCHAR(100) DEFAULT '',
+  [RejectionComment] VARCHAR(200) DEFAULT '',
   [ApplicationStatusID] INT NOT NULL,
+  [InstituteID] INT NOT NULL
 );
 
 GO
@@ -94,40 +91,35 @@ GO
 
 CREATE TABLE [dbo].[Institute_Info]
 (
-  [InstituteID] INT NOT NULL IDENTITY(1,1),
+  [InstituteID] INT IDENTITY(1,1) NOT NULL,
   [InstituteName] VARCHAR(100) NOT NULL,
-  [ContactDetailsID] INT NOT NULL,
-  [InstituteApplicationID] INT NOT NULL,
+  [ContactDetailsID] INT,
+  [BBDAdminID] INT NOT NULL,
 );
  
 GO
 
 CREATE TABLE [dbo].[Race]
 (
-  [RaceID][int] IDENTITY(1,1) NOT NULL,
-  [Race][varchar](8) NOT NULL,
-
+  [RaceID] INT IDENTITY(1,1) NOT NULL,
+  [Race] VARCHAR(10) NOT NULL,
 );
- 
 GO
 
 CREATE TABLE [dbo].[Roles]
 (
-  [RoleID][int] IDENTITY(1,1) NOT NULL,
-  [Role][varchar](9) NOT NULL,
-
+  [RoleID] INT IDENTITY(1,1) NOT NULL,
+  [Role] VARCHAR(10) NOT NULL
 );
- 
 GO
 
 CREATE TABLE [Student]
 (
   [StudentID] INT IDENTITY(1,1) NOT NULL,
-  [UserID] INT NOT NULL,
   [ID_Number] CHAR(13) NOT NULL,
   [RaceID] INT NOT NULL,
+  [UserID] INT NOT NULL,
 );
- 
 GO
 
 CREATE TABLE [dbo].[User_Details]
@@ -141,24 +133,7 @@ CREATE TABLE [dbo].[User_Details]
 );
 GO
 
-CREATE TABLE [dbo].[BBD_Admin]
-(
+CREATE TABLE [dbo].[BBDAdmin] (
   [BBDAdminID] INT IDENTITY(1,1) NOT NULL,
-  [UserID] INT NOT NULL,
-);
-GO
-
-
-
-CREATE VIEW [dbo].[Bursary_Applicant_View]
-AS
-SELECT 
-  BursaryApplicantID,
-  StudentID,
-  HeadOfDepartmentID,
-  InstituteFundAllocationID,
-  BursaryAmount,
-  Motivation,
-  BursaryApplicantStatusID,
-  AverageMarks
-FROM Bursary_Applicants;
+  [UserID] INT NOT NULL
+)
