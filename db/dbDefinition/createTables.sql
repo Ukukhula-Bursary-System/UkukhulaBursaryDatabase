@@ -1,8 +1,8 @@
-CREATE DATABASE BBD_BursaryDB
+CREATE DATABASE BBD_BursaryDB3
 
 GO
 
-USE BBD_BursaryDB;
+USE BBD_BursaryDB3;
 
 GO
 
@@ -83,7 +83,7 @@ GO
 
 CREATE TABLE [dbo].[Institution_Fund_Allocation]
 (
-  [InstitutionFundAllocationID] INT NOT NULL,
+  [InstitutionFundAllocationID] INT IDENTITY(1,1) NOT NULL,
   [AllocatedAmount] MONEY DEFAULT 0,
   [AllocatedRemainingAmount] MONEY DEFAULT 0,
   [InstituteID] INT DEFAULT 0,
@@ -140,3 +140,25 @@ CREATE TABLE [dbo].[User_Details]
   [RoleID] INT NOT NULL,
 );
 GO
+
+CREATE TABLE [dbo].[BBD_Admin]
+(
+  [BBDAdminID] INT IDENTITY(1,1) NOT NULL,
+  [UserID] INT NOT NULL,
+);
+GO
+
+
+
+CREATE VIEW [dbo].[Bursary_Applicant_View]
+AS
+SELECT 
+  BursaryApplicantID,
+  StudentID,
+  HeadOfDepartmentID,
+  InstituteFundAllocationID,
+  BursaryAmount,
+  Motivation,
+  BursaryApplicantStatusID,
+  AverageMarks
+FROM Bursary_Applicants;

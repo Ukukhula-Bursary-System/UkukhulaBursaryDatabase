@@ -1,4 +1,9 @@
 -- Getting Bursary Fund remaining amount.
+USE BBD_BursaryDB3;
+
+GO
+
+
 CREATE FUNCTION [dbo].[udfGetBursary_FundRemaingAmount](@BursaryFundID INT) 
     RETURNS MONEY
 AS

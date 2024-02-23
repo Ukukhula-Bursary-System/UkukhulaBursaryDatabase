@@ -1,4 +1,4 @@
-USE BBD_BursaryDB2;
+USE BBD_BursaryDB3;
 GO
 
 -- Application_Status Constraints
@@ -30,6 +30,9 @@ ALTER TABLE [dbo].[Bursary_Fund]
     ADD CONSTRAINT [PK_BursaryFund] 
         PRIMARY KEY CLUSTERED ([BursaryFundID])
 GO
+
+
+
 
 -- Institution_Fund_Allocation Constraints
 ALTER TABLE [dbo].[Institution_Fund_Allocation]
@@ -232,4 +235,22 @@ GO
 ALTER TABLE [dbo].[Document]
     ADD CONSTRAINT [UNQ_Document.BursaryApplicantID]
         UNIQUE ([BursaryApplicantID])
+GO
+
+
+ALTER TABLE BBD_ADMIN
+    ADD CONSTRAINT FK_BBD_ADMIN_USER_DETAILS_USERID
+        FOREIGN KEY (UserID)
+        REFERENCES USER_DETAILS(UserID)
+
+    ALTER TABLE BBD_ADMIN
+        ADD CONSTRAINT PK_BBD_ADMIN_BBDADMINID
+            PRIMARY KEY CLUSTERED ([BBDAdminID]);
+    
+
+
+-- Bursary Fund Constraints
+ALTER TABLE [dbo].[Bursary_Fund]
+    ADD [BBDAdminID] INT
+     FOREIGN KEY ([BBDAdminID]) REFERENCES [dbo].[BBD_Admin]([BBDAdminID])
 GO
