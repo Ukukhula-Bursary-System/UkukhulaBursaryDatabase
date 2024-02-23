@@ -1,17 +1,22 @@
 
 
 
-USE BBD_BursaryDB3;
+USE BBD_BursaryDB;
 GO
--- Populate Race table
+-- Race 
 INSERT INTO Race (Race)
 VALUES ('Asian'), ('Black'), ('White'), ('Coloured'), ('Indian');
 
--- Populate Roles table
+-- Roles
 INSERT INTO Roles (Role)
 VALUES ('HOD'), ('Admin'), ('Student'),('reviewer');
 
--- Contact_Details.    
+-- Application_status
+INSERT INTO Application_status (Status)
+VALUES ('Pending'), ('Approved'), ('Rejected'), ('Documents');
+
+
+-- Contact_Details   
 insert into Contact_Details (PhoneNumber, Email) values ('423 184 5449', 'eankrett0@tuttocitta.it');
 insert into Contact_Details (PhoneNumber, Email) values ('879 939 0268', 'jweond1@hubpages.com');
 insert into Contact_Details (PhoneNumber, Email) values ('778 996 9846', 'mgilfoy2@fc2.com');
@@ -62,10 +67,18 @@ insert into Contact_Details (PhoneNumber, Email) values ('151 240 0038', 'oseger
 insert into Contact_Details (PhoneNumber, Email) values ('413 142 4228', 'acallacher1b@hostgator.com');
 insert into Contact_Details (PhoneNumber, Email) values ('380 823 6921', 'pdarrell1c@cyberchimps.com');
 insert into Contact_Details (PhoneNumber, Email) values ('123 920 7548', 'pgalfour1d@biglobe.ne.jp');
+insert into Contact_Details (PhoneNumber, Email) values ('123 920 7548', 'uct@gmail.com');
+insert into Contact_Details (PhoneNumber, Email) values ('123 920 7548', 'uni@gmail.com');
+insert into Contact_Details (PhoneNumber, Email) values ('123 920 7548', 'varsity@outlook.com');
+insert into Contact_Details (PhoneNumber, Email) values ('123 920 7548', 'main@outlook.com');
+insert into Contact_Details (PhoneNumber, Email) values ('123 920 7548', 'beast@outlook.com');
+insert into Contact_Details (PhoneNumber, Email) values ('123 920 7548', 'act@outlook.com');
+insert into Contact_Details (PhoneNumber, Email) values ('123 920 7548', 'university@gmail.com');
+insert into Contact_Details (PhoneNumber, Email) values ('123 920 7548', 'lab@gmail.com');
+
 
 
 -- User_Details
-
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Janela', 'Dreini', 3, 1);
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Dalli', 'Broseke', 1, 2);
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Tallulah', 'Simonnot', 3, 3);
@@ -116,4 +129,120 @@ insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values 
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Early', 'Helwig', 1, 48);
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Shawn', 'Heinecke', 3, 49);
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Susan', 'Maccaddie', 2, 50);
+
+
+-- Student
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 1, 1);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 1, 2);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 2, 3);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 5, 4);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 1, 5);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 4, 6);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 5, 7);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 2, 8);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 1, 9);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 3, 10);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 5, 11);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 2, 12);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 5, 13);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 2, 14);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 1, 15);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 1, 16);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 1, 17);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 5, 18);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 4, 19);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 5, 20);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 5, 21);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 5, 22);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 2, 23);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 5, 24);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 4, 25);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 3, 26);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 1, 27);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 2, 28);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 2, 29);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 3, 30);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 2, 31);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 4, 32);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 2, 33);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 5, 34);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 2, 35);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 1, 36);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 2, 37);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 3, 38);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 4, 39);
+insert into Student (ID_number, RaceID, UserID) values ('1253456879523', 5, 40);
+
+
+-- BBDADMIN
+insert into BBDADMIN (userID) values (41);
+insert into BBDADMIN (userID) values (42);
+
+
+-- Bursary_fund
+insert into Bursary_fund (FundAmount, FundRemainingAmount, StudentMaxAllocation, FinacialDate, BBDAdminID)
+ values (12000000, 4000000, 125000, '2024-02-23', 1);
+
+
+-- Institute_Info
+insert into Institute_Info (InstituteName, ContactDetailsID, BBDAdminID) values ('University of Cape Town', 51, 1);
+insert into Institute_Info (InstituteName, ContactDetailsID, BBDAdminID) values ('University of Johannesburg', 52, 2);
+insert into Institute_Info (InstituteName, ContactDetailsID, BBDAdminID) values ('University of Pretoria', 53, 2);
+insert into Institute_Info (InstituteName, ContactDetailsID, BBDAdminID) values ('University of Witwatersrand',54, 1);
+insert into Institute_Info (InstituteName, ContactDetailsID, BBDAdminID) values ('University of KwaZulu-Natal', 55, 1);
+insert into Institute_Info (InstituteName, ContactDetailsID, BBDAdminID) values ('University of Stellenbosch', 56, 2);
+insert into Institute_Info (InstituteName, ContactDetailsID, BBDAdminID) values ('University of Limpopo', 57, 2);
+insert into Institute_Info (InstituteName, ContactDetailsID, BBDAdminID) values ('University of Fort Hare',58, 1);
+
+
+-- institute_Application
+insert into Institute_Application (Motivation, ApplicationStatusID, InstituteID) 
+values ('I would like to apply for the bursary fund',  2, 1);
+insert into Institute_Application (Motivation, ApplicationStatusID, InstituteID)
+    values ('I would like to apply for the bursary fund',  2, 2);
+insert into Institute_Application (Motivation, ApplicationStatusID, InstituteID)
+    values ('I would like to apply for the bursary fund',  2, 3);
+insert into Institute_Application (Motivation, ApplicationStatusID, InstituteID)
+    values ('I would like to apply for the bursary fund',  2, 4);
+insert into Institute_Application (Motivation, ApplicationStatusID, InstituteID)
+    values ('I would like to apply for the bursary fund',  2, 5);
+insert into Institute_Application (Motivation, ApplicationStatusID, InstituteID)
+    values ('I would like to apply for the bursary fund',  2, 6);
+insert into Institute_Application (Motivation, ApplicationStatusID, InstituteID)
+    values ('I would like to apply for the bursary fund',  2, 7);
+insert into Institute_Application (Motivation, ApplicationStatusID, InstituteID)
+    values ('I would like to apply for the bursary fund',  2, 8);
+
+
+-- Institute_Fund_Allocation
+insert into Institute_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
+    values (1000000, 1000000, 1, 1);
+insert into Institute_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
+    values (1000000, 1000000, 2, 1);
+insert into Institute_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
+    values (1000000, 1000000, 3, 1);
+insert into Institute_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
+    values (1000000, 1000000, 4, 1);
+insert into Institute_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
+    values (1000000, 1000000, 5, 1);
+insert into Institute_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
+    values (1000000, 1000000, 6, 1);
+insert into Institute_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
+    values (1000000, 1000000, 7, 1);
+insert into Institute_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
+    values (1000000, 1000000, 8, 1);
+
+
+-- Head_Of_Department
+
+insert into Head_Of_Department (InstituteID, UserID) values (1, 43);
+insert into Head_Of_Department (InstituteID, UserID) values (2, 44);
+insert into Head_Of_Department (InstituteID, UserID) values (3, 45);
+insert into Head_Of_Department (InstituteID, UserID) values (4, 46);
+insert into Head_Of_Department (InstituteID, UserID) values (5, 47);
+insert into Head_Of_Department (InstituteID, UserID) values (6, 48);
+insert into Head_Of_Department (InstituteID, UserID) values (7, 49);
+insert into Head_Of_Department (InstituteID, UserID) values (8, 50);
+
+
 
