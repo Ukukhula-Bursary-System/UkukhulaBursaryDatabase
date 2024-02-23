@@ -79,56 +79,59 @@ insert into Contact_Details (PhoneNumber, Email) values ('123 920 7548', 'lab@gm
 
 
 -- User_Details
+-- Students
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Janela', 'Dreini', 3, 1);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Dalli', 'Broseke', 1, 2);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Dalli', 'Broseke', 3, 2);
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Tallulah', 'Simonnot', 3, 3);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Marcelline', 'Bauer', 2, 4);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Paolo', 'Winn', 1, 5);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Oliviero', 'Philippon', 2, 6);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Marcelline', 'Bauer', 3, 4);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Paolo', 'Winn', 3, 5);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Oliviero', 'Philippon', 3, 6);
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Shaine', 'Stathor', 3, 7);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Julie', 'Lambillion', 2, 8);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Modestine', 'Humphrey', 2, 9);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Meggie', 'Garr', 2, 10);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Othella', 'Le Hucquet', 2, 11);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Frederigo', 'Markwell', 2, 12);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Julie', 'Lambillion', 3, 8);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Modestine', 'Humphrey', 3, 9);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Meggie', 'Garr', 3, 10);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Othella', 'Le Hucquet', 3, 11);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Frederigo', 'Markwell', 3, 12);
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Hashim', 'Moss', 3, 13);
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Karney', 'Stollenhof', 3, 14);
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Margit', 'Garham', 3, 15);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Cassandry', 'MacMenamy', 2, 16);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Cassandry', 'MacMenamy', 3, 16);
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Kaylyn', 'Duetschens', 3, 17);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Humfrey', 'Goodrum', 1, 18);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Juan', 'ducarme', 1, 19);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Winfield', 'Glencros', 2, 20);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Pavlov', 'Skeat', 2, 21);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Carr', 'Lansly', 1, 22);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Harriot', 'Gethyn', 1, 23);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Giorgia', 'Sabater', 1, 24);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Humfrey', 'Goodrum', 3, 18);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Juan', 'ducarme', 3, 19);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Winfield', 'Glencros', 3, 20);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Pavlov', 'Skeat', 3, 21);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Carr', 'Lansly', 3, 22);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Harriot', 'Gethyn', 3, 23);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Giorgia', 'Sabater', 3, 24);
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Maura', 'Gipp', 3, 25);
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Roz', 'Sapsed', 3, 26);
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Dukie', 'Smart', 3, 27);
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Brant', 'Cumberledge', 3, 28);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Tersina', 'Messer', 2, 29);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Camella', 'Gossipin', 2, 30);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Isidore', 'Worcester', 2, 31);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Hermann', 'Darwent', 1, 32);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Tersina', 'Messer', 3, 29);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Camella', 'Gossipin', 3, 30);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Isidore', 'Worcester', 3, 31);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Hermann', 'Darwent', 3, 32);
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Shelby', 'Rountree', 3, 33);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Hugibert', 'Cavaney', 1, 34);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Thedric', 'Wesgate', 1, 35);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Hugibert', 'Cavaney', 3, 34);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Thedric', 'Wesgate', 3, 35);
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Alexandro', 'Wabersinke', 3, 36);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Waylin', 'Farrell', 2,    37);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Emera', 'Wrassell', 1, 38);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Waylin', 'Farrell', 3,    37);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Emera', 'Wrassell', 3, 38);
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Johnny', 'Sysland', 3, 39);
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Pearle', 'Glison', 3, 40);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Tatiania', 'McLucky', 3, 41);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Orion', 'Castro', 1, 42);
+-- Admin
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Tatiania', 'McLucky', 2, 41);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Orion', 'Castro', 2, 42);
+-- HOD
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Ike', 'Coners', 1, 43);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Charlotta', 'MacGibbon', 2, 44);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Tomkin', 'Aggett', 3, 45);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Charlotta', 'MacGibbon', 1, 44);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Tomkin', 'Aggett', 1, 45);
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Aurea', 'Dancey', 1, 46);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Bernadette', 'Lismer', 3, 47);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Bernadette', 'Lismer', 1, 47);
 insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Early', 'Helwig', 1, 48);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Shawn', 'Heinecke', 3, 49);
-insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Susan', 'Maccaddie', 2, 50);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Shawn', 'Heinecke', 1, 49);
+insert into User_Details (firstname, lastname, RoleID, ContactdetailsID) values ('Susan', 'Maccaddie', 1, 50);
 
 
 -- Student
@@ -179,9 +182,11 @@ insert into BBDADMIN (userID) values (41);
 insert into BBDADMIN (userID) values (42);
 
 
+
+
 -- Bursary_fund
 insert into Bursary_fund (FundAmount, FundRemainingAmount, StudentMaxAllocation, FinacialDate, BBDAdminID)
- values (12000000, 4000000, 125000, '2024-02-23', 1);
+ values (12000000, 12000000, 125000, '2024-02-23', 1);
 
 
 -- Institute_Info
@@ -214,24 +219,6 @@ insert into Institute_Application (Motivation, ApplicationStatusID, InstituteID)
     values ('I would like to apply for the bursary fund',  2, 8);
 
 
--- Institute_Fund_Allocation
-insert into Institute_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
-    values (1000000, 1000000, 1, 1);
-insert into Institute_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
-    values (1000000, 1000000, 2, 1);
-insert into Institute_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
-    values (1000000, 1000000, 3, 1);
-insert into Institute_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
-    values (1000000, 1000000, 4, 1);
-insert into Institute_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
-    values (1000000, 1000000, 5, 1);
-insert into Institute_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
-    values (1000000, 1000000, 6, 1);
-insert into Institute_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
-    values (1000000, 1000000, 7, 1);
-insert into Institute_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
-    values (1000000, 1000000, 8, 1);
-
 
 -- Head_Of_Department
 
@@ -245,4 +232,100 @@ insert into Head_Of_Department (InstituteID, UserID) values (7, 49);
 insert into Head_Of_Department (InstituteID, UserID) values (8, 50);
 
 
+
+-- Institute_Fund_Allocation
+insert into Institution_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
+    values (1000000, 1000000, 1, 1);
+insert into Institution_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
+    values (1000000, 1000000, 2, 1);
+insert into Institution_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
+    values (1000000, 1000000, 3, 1);
+insert into Institution_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
+    values (1000000, 1000000, 4, 1);
+insert into Institution_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
+    values (1000000, 1000000, 5, 1);
+insert into Institution_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
+    values (1000000, 1000000, 6, 1);
+insert into Institution_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
+    values (1000000, 1000000, 7, 1);
+insert into Institution_Fund_Allocation (AllocatedAmount, AllocatedRemainingAmount, InstituteID, BursaryFundID)
+    values (1000000, 1000000, 8, 1);
+
+
+
+
+-- Bursary_Application
+
+-- Inserting data for students 1 to 40
+INSERT INTO [dbo].[Bursary_Applicants] ([StudentID], [HeadOfDepartmentID], [InstituteFundAllocationID], [BursaryAmount], [Motivation], [BursaryApplicationStatusID], [AverageMarks],[BBDAdminID])
+VALUES
+    -- Data for students 1 to 5
+    (1, 1, 1, 125000, 'Motivation statement for student 1', 1, 70,1),
+    (2, 1, 1, 125000, 'Motivation statement for student 2', 1, 72,1),
+    (3, 1, 1, 125000, 'Motivation statement for student 3', 1, 75,1),
+    (4, 1, 1, 125000, 'Motivation statement for student 4', 1, 68,1),
+    (5, 1, 1, 125000, 'Motivation statement for student 5', 1, 80,1),
+
+    -- Data for students 6 to 10
+    (6, 1, 2, 125000, 'Motivation statement for student 6', 1, 82,1),
+    (7, 1, 2, 125000, 'Motivation statement for student 7', 1, 77,1),
+    (8, 1, 2, 125000, 'Motivation statement for student 8', 1, 79,1),
+    (9, 1, 2, 125000, 'Motivation statement for student 9', 1, 71,1),
+    (10, 1, 2, 125000, 'Motivation statement for student 10', 1, 85,1);
+
+
+-- Data for students 11 to 15
+INSERT INTO [dbo].[Bursary_Applicants] ([StudentID], [HeadOfDepartmentID], [InstituteFundAllocationID], [BursaryAmount], [Motivation], [BursaryApplicationStatusID], [AverageMarks],[BBDAdminID])
+VALUES
+    (11, 2, 3, 125000, 'Motivation statement for student 11', 1, 75,1),
+    (12, 2, 3, 125000, 'Motivation statement for student 12', 1, 72,1),
+    (13, 2, 3, 125000, 'Motivation statement for student 13', 1, 78,1),
+    (14, 2, 3, 125000, 'Motivation statement for student 14', 1, 83,1),
+    (15, 2, 3, 125000, 'Motivation statement for student 15', 1, 69,1);
+
+
+-- Data for students 16 to 20
+INSERT INTO [dbo].[Bursary_Applicants] ([StudentID], [HeadOfDepartmentID], [InstituteFundAllocationID], [BursaryAmount], [Motivation], [BursaryApplicationStatusID], [AverageMarks],[BBDAdminID])
+VALUES
+    (16, 2, 4, 125000, 'Motivation statement for student 16', 1, 70,1),
+    (17, 2, 4, 125000, 'Motivation statement for student 17', 1, 74,1),
+    (18, 2, 4, 125000, 'Motivation statement for student 18', 1, 81,1),
+    (19, 2, 4, 125000, 'Motivation statement for student 19', 1, 68,1),
+    (20, 2, 4, 125000, 'Motivation statement for student 20', 1, 75,1);
+
+-- Data for students 21 to 25
+INSERT INTO [dbo].[Bursary_Applicants] ([StudentID], [HeadOfDepartmentID], [InstituteFundAllocationID], [BursaryAmount], [Motivation], [BursaryApplicationStatusID], [AverageMarks],[BBDAdminID])
+VALUES
+    (21, 3, 5, 125000, 'Motivation statement for student 21', 1, 79,1),
+    (22, 3, 5, 125000, 'Motivation statement for student 22', 1, 82,1),
+    (23, 3, 5, 125000, 'Motivation statement for student 23', 1, 77,1),
+    (24, 3, 5, 125000, 'Motivation statement for student 24', 1, 83,1),
+    (25, 3, 5, 125000, 'Motivation statement for student 25', 1, 85,1);
+
+-- Data for students 26 to 30
+INSERT INTO [dbo].[Bursary_Applicants] ([StudentID], [HeadOfDepartmentID], [InstituteFundAllocationID], [BursaryAmount], [Motivation], [BursaryApplicationStatusID], [AverageMarks],[BBDAdminID])
+VALUES
+    (26, 3, 6, 125000, 'Motivation statement for student 26', 1, 75,1),
+    (27, 3, 6, 125000, 'Motivation statement for student 27', 1, 71,1),
+    (28, 3, 6, 125000, 'Motivation statement for student 28', 1, 73,1),
+    (29, 3, 6, 125000, 'Motivation statement for student 29', 1, 80,1),
+    (30, 3, 6, 125000, 'Motivation statement for student 30', 1, 76,1);
+
+-- Data for students 31 to 35
+INSERT INTO [dbo].[Bursary_Applicants] ([StudentID], [HeadOfDepartmentID], [InstituteFundAllocationID], [BursaryAmount], [Motivation], [BursaryApplicationStatusID], [AverageMarks],[BBDAdminID])
+VALUES
+    (31, 4, 7, 125000, 'Motivation statement for student 31', 1, 72,1),
+    (32, 4, 7, 125000, 'Motivation statement for student 32', 1, 70,1),
+    (33, 4, 7, 125000, 'Motivation statement for student 33', 1, 79,1),
+    (34, 4, 7, 125000, 'Motivation statement for student 34', 1, 68,1),
+    (35, 4, 7, 125000, 'Motivation statement for student 35', 1, 81,1);
+
+-- Data for students 36 to 40
+INSERT INTO [dbo].[Bursary_Applicants] ([StudentID], [HeadOfDepartmentID], [InstituteFundAllocationID], [BursaryAmount], [Motivation], [BursaryApplicationStatusID], [AverageMarks],[BBDAdminID])
+VALUES
+    (36, 4, 8, 125000, 'Motivation statement for student 36', 1, 74,1),
+    (37, 4, 8, 125000, 'Motivation statement for student 37', 1, 73,1),
+    (38, 4, 8, 125000, 'Motivation statement for student 38', 1, 82,1),
+    (39, 4, 8, 125000, 'Motivation statement for student 39', 1, 80,1),
+    (40, 4, 8, 125000, 'Motivation statement for student 40', 1, 77,1);
 
