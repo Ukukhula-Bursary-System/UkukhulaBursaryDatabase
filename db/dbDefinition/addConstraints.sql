@@ -31,6 +31,9 @@ ALTER TABLE [dbo].[Bursary_Fund]
         PRIMARY KEY CLUSTERED ([BursaryFundID])
 GO
 
+
+
+
 -- Institution_Fund_Allocation Constraints
 ALTER TABLE [dbo].[Institution_Fund_Allocation]
     ADD CONSTRAINT [PK_Institution_Fund_Allocation]
