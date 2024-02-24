@@ -35,3 +35,53 @@ BEGIN
     RETURN @RemainingAmount
 END
 GO
+
+
+CREATE PROCEDURE dbo.getStudentuniversity
+  @HeadOfDepartmentID INT
+AS
+BEGIN
+  SELECT 
+    Institute_Info.InstituteName
+  FROM 
+    [BBD_BursaryDB].[dbo].[Institute_Info] AS Institute_Info
+  JOIN 
+    [BBD_BursaryDB].[dbo].[Head_Of_Department] AS Head_Of_Department
+  ON 
+    Institute_Info.InstituteID = Head_Of_Department.InstituteID
+  WHERE 
+    Head_Of_Department.HeadOfDepartmentID = @HeadOfDepartmentID;
+END;
+
+GO
+
+CREATE FUNCTION dbo.getStudentuniversity  (@HeadOfDepartmentID INT)
+  
+RETURNS VARCHAR(100)
+AS
+BEGIN
+    DECLARE @InstituteName VARCHAR(100)
+    SELECT 
+        @InstituteName = Institute_Info.InstituteName
+    FROM 
+        [BBD_BursaryDB].[dbo].[Institute_Info] AS Institute_Info
+    JOIN 
+        [BBD_BursaryDB].[dbo].[Head_Of_Department] AS Head_Of_Department
+    ON 
+        Institute_Info.InstituteID = Head_Of_Department.InstituteID
+    WHERE 
+        Head_Of_Department.HeadOfDepartmentID = @HeadOfDepartmentID;
+    RETURN @InstituteName
+END;
+
+GO
+CREATE VIEW [dbo].[AllstudentsApplications]
+AS
+    SELECT U.[FirstName], U.[LastName], dbo.getStudentuniversity (B.HeadofdepartmentId) as University,B.AverageMarks, B.[BursaryAmount], B.[Motivation], A.[Status]
+    FROM [Student] AS S
+        INNER JOIN [User_Details] AS U
+        ON S.[UserID] = U.[UserID]
+        INNER JOIN [Bursary_Applicants] AS B
+        ON S.[StudentID] = B.[StudentID]
+        INNER JOIN [Application_Status] AS A
+        ON B.[BursaryApplicationStatusID] = A.[ApplicationStatusID];

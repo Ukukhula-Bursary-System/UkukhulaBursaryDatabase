@@ -329,3 +329,18 @@ VALUES
     (39, 4, 8, 125000, 'Motivation statement for student 39', 1, 80,1),
     (40, 4, 8, 125000, 'Motivation statement for student 40', 1, 77,1);
 
+
+
+// VIEW that shows the students that have applied for the bursary fund
+
+CREATE VIEW [dbo].[Student_Bursary_Application]
+AS
+  SELECT S.[StudentID], U.[FirstName], U.[LastName], B.[BursaryAmount], B.[Motivation], A.[Status]
+  FROM [Student] AS S
+    INNER JOIN [User_Details] AS U
+    ON S.[UserID] = U.[UserID]
+    INNER JOIN [Bursary_Applicants] AS B
+    ON S.[StudentID] = B.[StudentID]
+    INNER JOIN [Application_Status] AS A
+    ON B.[BursaryApplicationStatusID] = A.[Index];
+    
