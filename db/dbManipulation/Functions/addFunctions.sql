@@ -35,3 +35,17 @@ BEGIN
     RETURN @RemainingAmount
 END
 GO
+
+
+-- Finding User Details by email
+CREATE FUNCTION [dbo].[udfFindUser_DetailsByEmail](@Email VARCHAR(100))
+    RETURNS TABLE
+AS
+    RETURN SELECT [UserID], [FirstName], [LastName], [IsActive], [PhoneNumber], [Email], [Role]
+    FROM [dbo].[User_Details] userDetails
+           INNER JOIN [dbo].[Contact_Details] contactDetails
+           ON userDetails.[ContactDetailsID] = contactDetails.[ContactDetailsID]
+           INNER JOIN [dbo].[Roles] roles
+           ON userDetails.RoleID = roles.[RoleID]
+           WHERE contactDetails.Email = @Email;
+GO
