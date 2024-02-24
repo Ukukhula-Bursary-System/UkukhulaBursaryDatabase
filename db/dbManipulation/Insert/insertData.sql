@@ -330,6 +330,9 @@ VALUES
     (40, 4, 8, 125000, 'Motivation statement for student 40', 1, 77,1);
 
 
-GO
--- VIEW that shows the students that have applied for the bursary fund
+
+
+
+
+
 
