@@ -1,0 +1,67 @@
+CREATE PROCEDURE [dbo].[uspSaveInstitute]
+@InstituteName VARCHAR(120),
+@ApplicationStatusID INT,
+@InstituteReviewer INT,
+@RepresentativeFirstName VARCHAR(50),
+@RepresentativeLastName VARCHAR(50),
+@RepresentativePhoneNumber VARCHAR(12),
+@RepresentativeEmail VARCHAR(50)
+AS
+BEGIN TRY
+  BEGIN TRANSACTION
+    INSERT INTO [dbo].[Institute_Info] (
+      [InstituteName],
+      [BBDAdminID]
+    ) VALUES (
+      @InstituteName,
+      @InstituteReviewer
+    )
+    DECLARE @InstituteID INT = SCOPE_IDENTITY()
+    SELECT @InstituteID = IDENT_CURRENT('Institute_Info')
+
+    INSERT INTO [dbo].[Institute_Application] (
+      [ApplicationStatusID],
+      [InstituteID]
+    ) VALUES (
+      @ApplicationStatusID,
+      @InstituteID
+    )
+
+    INSERT INTO [dbo].[Contact_Details] (
+      [PhoneNumber],
+      [Email]
+    ) VALUES (
+      @RepresentativePhoneNumber,
+      @RepresentativeEmail
+    )
+    DECLARE @ContactDetailsID INT = SCOPE_IDENTITY()
+    SELECT @ContactDetailsID = IDENT_CURRENT('Institute_Info')
+
+    INSERT INTO [dbo].[User_Details] (
+      [FirstName],
+      [LastName],
+      [ContactDetailsID],
+      [RoleID]
+    ) VALUES (
+      @RepresentativeFirstName,
+      @RepresentativeLastName,
+      @ContactDetailsID,
+      1
+    )
+    DECLARE @UserDetailsID INT = SCOPE_IDENTITY()
+    SELECT @UserDetailsID = IDENT_CURRENT('User_Details')
+
+    INSERT INTO [dbo].[Head_Of_Department] (
+        [InstituteID],
+        [UserID]
+    ) VALUES (
+        @InstituteID,
+        @UserDetailsID
+    )
+
+  COMMIT TRANSACTION
+END TRY
+BEGIN CATCH
+    ROLLBACK TRANSACTION;
+END CATCH
+GO

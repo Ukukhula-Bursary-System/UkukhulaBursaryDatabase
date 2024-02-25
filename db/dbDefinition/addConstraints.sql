@@ -1,5 +1,3 @@
-USE BBD_BursaryDB;
-GO
 
 -- Application_Status PK Constraint
 ALTER TABLE [dbo].[Application_Status]

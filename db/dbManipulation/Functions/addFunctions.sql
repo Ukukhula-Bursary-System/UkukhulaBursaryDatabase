@@ -49,3 +49,20 @@ AS
            ON userDetails.RoleID = roles.[RoleID]
            WHERE contactDetails.Email = @Email;
 GO
+
+
+-- Gets Bursary Fund Id for a year
+CREATE FUNCTION [dbo].[udfGetBursaryFundId](@year INT)
+    RETURNS INT
+AS
+BEGIN
+    DECLARE @BursaryFundID INT = -1
+    SELECT 
+        @BursaryFundID = [BursaryFundID] 
+    FROM 
+        [dbo].[Bursary_Fund]
+    WHERE
+        YEAR([FinacialDate]) = @year
+    RETURN @BursaryFundID
+END
+GO
