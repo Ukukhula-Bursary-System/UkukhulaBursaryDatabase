@@ -36,6 +36,7 @@ GO
 CREATE VIEW [dbo].[vInstitutionFundAllocation] 
 AS
 SELECT 
+       InstituteInfo.[InstituteID],
        InstitutionFundAllocation.[InstitutionFundAllocationID], 
        InstitutionFundAllocation.[AllocatedAmount], 
        InstitutionFundAllocation.[AllocatedRemainingAmount], 
@@ -52,3 +53,40 @@ INNER JOIN
 ON 
        InstitutionFundAllocation.[InstituteID] = InstituteInfo.[InstituteID]
 GO
+
+
+-- View for returning all BBD Admins
+CREATE VIEW [dbo].[vBBDAdmin]
+AS
+SELECT
+       BBDAdmin.[BBDAdminID],
+       UserDetails.[FirstName],
+       UserDetails.[LastName],
+       UserDetails.[IsActive],
+       ContactDetails.[Email],
+       ContactDetails.[PhoneNumber],
+       Roles.[Role]
+FROM
+       [dbo].[BBDAdmin] BBDAdmin
+INNER JOIN
+       [dbo].[User_Details] UserDetails
+ON
+       BBDAdmin.[UserID] = UserDetails.[UserID]
+INNER JOIN
+       [dbo].[Contact_Details] ContactDetails
+ON
+       UserDetails.[ContactDetailsID] = ContactDetails.[ContactDetailsID]
+INNER JOIN
+       [dbo].[Roles] Roles
+ON
+       UserDetails.[RoleID] = Roles.[RoleID]
+GO
+
+-- Head of department with email
+CREATE VIEW [dbo].[vHeadOfDepartment]
+AS
+SELECT HeadOfDepartment.[InstituteID], [Email] FROM [dbo].[Head_Of_Department] HeadOfDepartment 
+INNER JOIN [dbo].[User_Details] UserDetails 
+ON HeadOfDepartment.[UserID] = UserDetails.[UserID] 
+INNER JOIN [dbo].[Contact_Details] ContactDetails 
+ON ContactDetails.[ContactDetailsID] = UserDetails.[ContactDetailsID] 

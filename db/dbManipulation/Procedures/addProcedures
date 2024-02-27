@@ -1,3 +1,4 @@
+-- Procedure for saving an institute
 CREATE PROCEDURE [dbo].[uspSaveInstitute]
 @InstituteName VARCHAR(120),
 @ApplicationStatusID INT,
@@ -65,3 +66,57 @@ BEGIN CATCH
     ROLLBACK TRANSACTION;
 END CATCH
 GO
+
+
+-- Procedure for saving an admin
+CREATE PROCEDURE [dbo].[uspSaveAdmin]
+@FirstName VARCHAR(50),
+@LastName VARCHAR(50),
+@PhoneNumber VARCHAR(12),
+@Email VARCHAR(50),
+@RoleID INT
+AS
+BEGIN TRY
+  BEGIN TRANSACTION
+    INSERT INTO [dbo].[Contact_Details] (
+      [PhoneNumber],
+      [Email]
+    ) VALUES (
+      @PhoneNumber,
+      @Email
+    )
+    DECLARE @ContactDetailsID INT = SCOPE_IDENTITY()
+    SELECT @ContactDetailsID = IDENT_CURRENT('Contact_Details')
+
+    INSERT INTO [dbo].[User_Details] (
+      [FirstName],
+      [LastName],
+      [ContactDetailsID],
+      [RoleID]
+    ) VALUES (
+      @FirstName,
+      @LastName,
+      @ContactDetailsID,
+      @RoleID
+    )
+    DECLARE @UserDetailsID INT = SCOPE_IDENTITY()
+    SELECT @UserDetailsID = IDENT_CURRENT('User_Details')
+
+    INSERT INTO [dbo].[BBDAdmin] (
+      [UserID]
+    ) VALUES (
+      @UserDetailsID
+    )
+  COMMIT TRANSACTION
+END TRY
+BEGIN CATCH
+  ROLLBACK TRANSACTION;
+END CATCH
+GO
+
+EXEC [dbo].[uspSaveAdmin]
+@FirstName = "Themba",
+@LastName = "Malinga",
+@PhoneNumber = "1234567890",
+@Email = "themba@email.com",
+@RoleID = 4
