@@ -90,3 +90,40 @@ INNER JOIN [dbo].[User_Details] UserDetails
 ON HeadOfDepartment.[UserID] = UserDetails.[UserID] 
 INNER JOIN [dbo].[Contact_Details] ContactDetails 
 ON ContactDetails.[ContactDetailsID] = UserDetails.[ContactDetailsID] 
+GO
+
+--- Retrieve Bursary Application
+
+CREATE VIEW [dbo].[vBursaryApplicants]
+AS
+SELECT  
+       BursaryApplicants.[BursaryApplicantID],
+       BursaryApplicants.[BursaryAmount],
+       BursaryApplicants.[AverageMarks],
+       BursaryApplicants.[Motivation],
+       ApplicationStatus.[Status],
+       BursaryApplicants.[HeadOfDepartmentID],
+       UserDetails.[FirstName],
+       UserDetails.[LastName],
+       ContactDetails.[Email],
+       BursaryApplicants.[InstituteFundAllocationID],
+       BursaryApplicants.[BBDAdminID]
+FROM
+       [dbo].[Bursary_Applicants] BursaryApplicants
+INNER JOIN 
+       [dbo].[Application_Status] ApplicationStatus  
+ON 
+       BursaryApplicants.[BursaryApplicationStatusID] = ApplicationStatus.[ApplicationStatusID]
+INNER JOIN
+       [dbo].[Student] Students      
+ON
+       BursaryApplicants.[StudentID] = Students.[StudentID]
+INNER JOIN
+       [dbo].[User_Details] UserDetails
+ON
+       Students.[UserID] = UserDetails.[UserID]
+INNER JOIN
+       [dbo].[Contact_Details] ContactDetails
+ON
+       UserDetails.[ContactDetailsID] = ContactDetails.[ContactDetailsID]
+ 
