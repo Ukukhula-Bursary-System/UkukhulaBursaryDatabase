@@ -36,7 +36,7 @@ BEGIN TRY
       @RepresentativeEmail
     )
     DECLARE @ContactDetailsID INT = SCOPE_IDENTITY()
-    SELECT @ContactDetailsID = IDENT_CURRENT('Institute_Info')
+    SELECT @ContactDetailsID = IDENT_CURRENT('Contact_Details')
 
     INSERT INTO [dbo].[User_Details] (
       [FirstName],

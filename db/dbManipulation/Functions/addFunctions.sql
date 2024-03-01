@@ -66,3 +66,41 @@ BEGIN
     RETURN @BursaryFundID
 END
 GO
+
+
+-- Retrieves all student applications made by an hod
+ALTER FUNCTION [dbo].[udfFindStudentApplicationByHOD](@Email VARCHAR(50))
+  RETURNS TABLE
+AS
+
+  RETURN SELECT 
+    vStudentApplication.[StudentID],
+    vStudentApplication.[FirstName], 
+    vStudentApplication.[LastName], 
+    vStudentApplication.[University],
+    vStudentApplication.[AverageMarks],
+    vStudentApplication.[BursaryAmount], 
+    vStudentApplication.[Motivation],
+    vStudentApplication.[Status], 
+    vStudentApplication.[HeadOfDepartmentID]
+  FROM 
+    [dbo].[Student_Bursary_Application] vStudentApplication
+  INNER JOIN 
+    [dbo].[Head_Of_Department] HeadOfDepartment
+  ON
+    HeadOfDepartment.[HeadOfDepartmentID] = vStudentApplication.[HeadOfDepartmentID]
+  INNER JOIN
+    [dbo].[User_Details] UserDetails
+  ON
+    UserDetails.[UserID] = HeadOfDepartment.[UserID]
+  INNER JOIN
+    [dbo].[Contact_Details] ContactDetails
+  ON
+    ContactDetails.[ContactDetailsID] = UserDetails.[ContactDetailsID]
+  WHERE
+    ContactDetails.[Email] = @Email
+
+GO
+
+SELECT * FROM [dbo].[udfFindStudentApplicationByHOD]('condrusek16@free.fr')
+
