@@ -85,8 +85,22 @@ GO
 -- Head of department with email
 CREATE VIEW [dbo].[vHeadOfDepartment]
 AS
-SELECT HeadOfDepartment.[InstituteID], [Email] FROM [dbo].[Head_Of_Department] HeadOfDepartment 
-INNER JOIN [dbo].[User_Details] UserDetails 
-ON HeadOfDepartment.[UserID] = UserDetails.[UserID] 
-INNER JOIN [dbo].[Contact_Details] ContactDetails 
-ON ContactDetails.[ContactDetailsID] = UserDetails.[ContactDetailsID] 
+SELECT 
+       HeadOfDepartment.[InstituteID],
+       HeadOfDepartment.[HeadOfDepartmentID],
+       [Email],
+       InstituteInfo.[InstituteName]
+FROM 
+       [dbo].[Head_Of_Department] HeadOfDepartment 
+INNER JOIN 
+       [dbo].[User_Details] UserDetails 
+ON 
+       HeadOfDepartment.[UserID] = UserDetails.[UserID] 
+INNER JOIN 
+       [dbo].[Contact_Details] ContactDetails 
+ON 
+       ContactDetails.[ContactDetailsID] = UserDetails.[ContactDetailsID] 
+INNER JOIN
+       [dbo].[Institute_Info] InstituteInfo
+ON
+       HeadOfDepartment.[InstituteID] = InstituteInfo.[InstituteID]
