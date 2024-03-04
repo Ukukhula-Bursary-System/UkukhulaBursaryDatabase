@@ -104,3 +104,22 @@ INNER JOIN
        [dbo].[Institute_Info] InstituteInfo
 ON
        HeadOfDepartment.[InstituteID] = InstituteInfo.[InstituteID]
+
+
+GO
+
+CREATE VIEW [dbo].[GetFullStudentDetails]
+AS
+ SELECT B.StudentID,C.Email,C.PhoneNumber, U.[FirstName], U.[LastName], dbo.getStudentuniversity (B.HeadofdepartmentId) as University,B.AverageMarks, B.[BursaryAmount], B.[Motivation], A.[Status], H.[HeadOfDepartmentID]
+  FROM [Student] AS S
+    INNER JOIN [User_Details] AS U
+    ON S.[UserID] = U.[UserID]
+    INNER JOIN [Bursary_Applicants] AS B
+    ON S.[StudentID] = B.[StudentID]
+    INNER JOIN [Application_Status] AS A
+    ON B.[BursaryApplicationStatusID] = A.[ApplicationStatusID]
+    INNER JOIN [dbo].[Head_Of_Department] H
+    ON H.[HeadOfDepartmentID] = B.[HeadOfDepartmentID]
+	INNER JOIN Contact_Details AS C
+	ON C.ContactDetailsID = U.ContactDetailsID
+GO
