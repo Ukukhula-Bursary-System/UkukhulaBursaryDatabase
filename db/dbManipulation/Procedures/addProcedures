@@ -114,9 +114,124 @@ BEGIN CATCH
 END CATCH
 GO
 
-EXEC [dbo].[uspSaveAdmin]
-@FirstName = "Themba",
-@LastName = "Malinga",
+-- EXEC [dbo].[uspSaveAdmin]
+-- @FirstName = "Themba",
+-- @LastName = "Malinga",
+-- @PhoneNumber = "1234567890",
+-- @Email = "themba@email.com",
+-- @RoleID = 4
+-- GO
+
+
+-- Saving a student
+CREATE PROCEDURE [dbo].[uspSaveStudent]
+@FirstName VARCHAR(50),
+@LastName VARCHAR(50),
+@PhoneNumber VARCHAR(12),
+@Email VARCHAR(50),
+@InstituteID INT,
+@IDNumber CHAR(13),
+@RaceID INT,
+@BursaryAmount MONEY,
+@AverageMarks INT,
+@Motivation TEXT,
+@HeadOfDepartmentID INT
+AS
+BEGIN TRY
+  BEGIN TRANSACTION
+    INSERT INTO [dbo].[Contact_Details] (
+      [PhoneNumber],
+      [Email]
+    ) VALUES (
+      @PhoneNumber,
+      @Email
+    )
+    DECLARE @ContactDetailsID INT = SCOPE_IDENTITY()
+    SELECT @ContactDetailsID = IDENT_CURRENT('Contact_Details')
+
+    INSERT INTO [dbo].[User_Details] (
+      [FirstName],
+      [LastName],
+      [ContactDetailsID],
+      [RoleID]
+    ) VALUES (
+      @FirstName,
+      @LastName,
+      @ContactDetailsID,
+      3
+    )
+    DECLARE @UserDetailsID INT = SCOPE_IDENTITY()
+    SELECT @UserDetailsID = IDENT_CURRENT('User_Details')
+
+    INSERT INTO [dbo].[Student] (
+      [ID_Number],
+      [RaceID],
+      [UserID]
+    ) VALUES (
+      @IDNumber,
+      @RaceID,
+      @UserDetailsID
+    )
+    DECLARE @StudentID INT = SCOPE_IDENTITY()
+    SELECT @StudentID = IDENT_CURRENT('Student')
+
+    DECLARE @InstituteFundAllocationID INT;
+    SELECT 
+      @InstituteFundAllocationID = [InstitutionFundAllocationID] 
+    FROM 
+      [dbo].[Institution_Fund_Allocation] 
+    WHERE 
+      [InstituteID] = @InstituteID
+
+
+    DECLARE @BBDAdminID INT;
+    SELECT
+      @BBDAdminID = [BBDAdminID]
+    FROM
+      [dbo].[Institute_Info]
+    WHERE
+      [InstituteID] = @InstituteID
+
+    PRINT @InstituteFundAllocationID
+    PRINT @BBDAdminID
+    
+
+    INSERT INTO [dbo].[Bursary_Applicants] (
+      [BursaryAmount],
+      [AverageMarks],
+      [Motivation],
+      [BursaryApplicationStatusID],
+      [HeadOfDepartmentID],
+      [StudentID],
+      [InstituteFundAllocationID],
+      [BBDAdminID]
+    ) VALUES (
+      @BursaryAmount,
+      @AverageMarks,
+      @Motivation,
+      4,
+      @HeadOfDepartmentID,
+      @StudentID,
+      @InstituteFundAllocationID,
+      @BBDAdminID
+    )
+  COMMIT TRANSACTION
+END TRY
+BEGIN CATCH
+  ROLLBACK TRANSACTION
+END CATCH
+GO
+
+
+EXEC [dbo].[uspSaveStudent]
+@FirstName = "Something",
+@LastName = "Something",
 @PhoneNumber = "1234567890",
-@Email = "themba@email.com",
-@RoleID = 4
+@Email = "something@email.com",
+@InstituteID = 15,
+@IDNumber = "1234567890222",
+@RaceID = 1,
+@BursaryAmount = 600,
+@AverageMarks = 80,
+@Motivation = "This person is smart",
+@HeadOfDepartmentID = 17

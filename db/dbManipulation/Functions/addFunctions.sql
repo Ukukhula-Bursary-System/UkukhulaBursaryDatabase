@@ -69,7 +69,7 @@ GO
 
 
 -- Retrieves all student applications made by an hod
-ALTER FUNCTION [dbo].[udfFindStudentApplicationByHOD](@Email VARCHAR(50))
+CREATE FUNCTION [dbo].[udfFindStudentApplicationByHOD](@Email VARCHAR(50))
   RETURNS TABLE
 AS
 
