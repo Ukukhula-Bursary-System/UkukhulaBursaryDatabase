@@ -103,4 +103,23 @@ AS
 GO
 
 SELECT * FROM [dbo].[udfFindStudentApplicationByHOD]('condrusek16@free.fr')
+GO
 
+--- Calculate the sum amount that has been allocated to universities
+CREATE FUNCTION [dbo].[udfCalculateInstituteFundAllocationSumForYear](@Year INT)
+  RETURNS MONEY
+AS
+BEGIN
+  DECLARE @InstituteFundAllocationSum MONEY = 0;
+  SELECT 
+    @InstituteFundAllocationSum = @InstituteFundAllocationSum + [AllocatedAmount]
+  FROM
+    [dbo].[Institution_Fund_Allocation] InstitutionFundAllocation
+  INNER JOIN
+    [dbo].[Bursary_Fund] BursaryFund
+  ON
+    InstitutionFundAllocation.[BursaryFundID] = BursaryFund.[BursaryFundID]
+  WHERE
+    YEAR(BursaryFund.[FinacialDate]) = @year
+  RETURN @InstituteFundAllocationSum
+END
