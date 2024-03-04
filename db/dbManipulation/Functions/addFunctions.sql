@@ -68,80 +68,58 @@ END
 GO
 
 
+-- Retrieves all student applications made by an hod
+CREATE FUNCTION [dbo].[udfFindStudentApplicationByHOD](@Email VARCHAR(50))
+  RETURNS TABLE
+AS
 
+  RETURN SELECT 
+    vStudentApplication.[StudentID],
+    vStudentApplication.[FirstName], 
+    vStudentApplication.[LastName], 
+    vStudentApplication.[University],
+    vStudentApplication.[AverageMarks],
+    vStudentApplication.[BursaryAmount], 
+    vStudentApplication.[Motivation],
+    vStudentApplication.[Status], 
+    vStudentApplication.[HeadOfDepartmentID]
+  FROM 
+    [dbo].[Student_Bursary_Application] vStudentApplication
+  INNER JOIN 
+    [dbo].[Head_Of_Department] HeadOfDepartment
+  ON
+    HeadOfDepartment.[HeadOfDepartmentID] = vStudentApplication.[HeadOfDepartmentID]
+  INNER JOIN
+    [dbo].[User_Details] UserDetails
+  ON
+    UserDetails.[UserID] = HeadOfDepartment.[UserID]
+  INNER JOIN
+    [dbo].[Contact_Details] ContactDetails
+  ON
+    ContactDetails.[ContactDetailsID] = UserDetails.[ContactDetailsID]
+  WHERE
+    ContactDetails.[Email] = @Email
 
-CREATE PROCEDURE [dbo].[addStudent]
-(
-    @FirstName varchar(50),
-    @LastName varchar(50),
-    @Email varchar(50),
-    @phoneNumber char(13),
-    @identiyNumber varchar(50),
-    @race varchar(20),
-    @role varchar(20),
-    @motivation varchar(100),
-    @averageMarks int,
-    @Head_Of_DepartmentID int,
-    @BursaryAmount int
-   
-)
+GO
 
+SELECT * FROM [dbo].[udfFindStudentApplicationByHOD]('condrusek16@free.fr')
+GO
+
+--- Calculate the sum amount that has been allocated to universities
+CREATE FUNCTION [dbo].[udfCalculateInstituteFundAllocationSumForYear](@Year INT)
+  RETURNS MONEY
 AS
 BEGIN
-    DECLARE @raceID int;
-    DECLARE @roleID int;
-    DECLARE @contactDetailsID int;
-    DECLARE @userID int;
-    DECLARE @studentID int;
-    DECLARE @instituteID int;
- 
-BEGIN TRY
-    BEGIN TRANSACTION
-    -- Get the raceID
-    SELECT @raceID = RaceID
-    FROM Race
-    WHERE Race.race = @race;
-
-    -- Get the roleID
-
-    SELECT @roleID = RoleID
-    FROM Roles
-    WHERE Roles.Role = @role;
-
-    -- Insert into Contact_Details
-    INSERT INTO Contact_Details (PhoneNumber, Email)
-    VALUES (@phoneNumber, @Email);
-
-    SET @contactDetailsID = SCOPE_IDENTITY();
-    
-    -- Get the contactDetailsID
-    SELECT @contactDetailsID = ContactDetailsID
-    FROM Contact_Details
-    WHERE Contact_Details.PhoneNumber = @phoneNumber;
-
-    -- Insert into User_Details
-    INSERT INTO User_Details (firstname, lastname, RoleID, ContactdetailsID)
-    VALUES (@FirstName, @LastName, @roleID, @contactDetailsID);
-
-    SET @userID = SCOPE_IDENTITY();
-
-    -- insert into Student
-    INSERT INTO Student (ID_number, RaceID, UserID)
-    VALUES (@identiyNumber, @raceID, @userID);
-
-    SET @studentID = SCOPE_IDENTITY();
-
-    --insert into Bursary_Applicants
-    INSERT INTO Bursary_Applicants (StudentID, HeadOfDepartmentID, InstituteFundAllocationID,
-        BursaryAmount, Motivation, BursaryApplicationStatusID, AverageMarks, BBDAdminID)
-    VALUES (@studentID, @Head_Of_DepartmentID, @Head_Of_DepartmentID, @BursaryAmount, @motivation,1, @averageMarks, 1);
-
-END TRY
-BEGIN CATCH
-    IF @@TRANCOUNT > 0
-    BEGIN
-        ROLLBACK TRANSACTION;
-    END
-END CATCH
+  DECLARE @InstituteFundAllocationSum MONEY = 0;
+  SELECT 
+    @InstituteFundAllocationSum = @InstituteFundAllocationSum + [AllocatedAmount]
+  FROM
+    [dbo].[Institution_Fund_Allocation] InstitutionFundAllocation
+  INNER JOIN
+    [dbo].[Bursary_Fund] BursaryFund
+  ON
+    InstitutionFundAllocation.[BursaryFundID] = BursaryFund.[BursaryFundID]
+  WHERE
+    YEAR(BursaryFund.[FinacialDate]) = @year
+  RETURN @InstituteFundAllocationSum
 END
-GO

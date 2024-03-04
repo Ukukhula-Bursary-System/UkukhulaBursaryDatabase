@@ -85,45 +85,22 @@ GO
 -- Head of department with email
 CREATE VIEW [dbo].[vHeadOfDepartment]
 AS
-SELECT HeadOfDepartment.[InstituteID], [Email] FROM [dbo].[Head_Of_Department] HeadOfDepartment 
-INNER JOIN [dbo].[User_Details] UserDetails 
-ON HeadOfDepartment.[UserID] = UserDetails.[UserID] 
-INNER JOIN [dbo].[Contact_Details] ContactDetails 
-ON ContactDetails.[ContactDetailsID] = UserDetails.[ContactDetailsID] 
-GO
-
---- Retrieve Bursary Application
-
-CREATE VIEW [dbo].[vBursaryApplicants]
-AS
-SELECT  
-       BursaryApplicants.[BursaryApplicantID],
-       BursaryApplicants.[BursaryAmount],
-       BursaryApplicants.[AverageMarks],
-       BursaryApplicants.[Motivation],
-       ApplicationStatus.[Status],
-       BursaryApplicants.[HeadOfDepartmentID],
-       UserDetails.[FirstName],
-       UserDetails.[LastName],
-       ContactDetails.[Email],
-       BursaryApplicants.[InstituteFundAllocationID],
-       BursaryApplicants.[BBDAdminID]
-FROM
-       [dbo].[Bursary_Applicants] BursaryApplicants
+SELECT 
+       HeadOfDepartment.[InstituteID],
+       HeadOfDepartment.[HeadOfDepartmentID],
+       [Email],
+       InstituteInfo.[InstituteName]
+FROM 
+       [dbo].[Head_Of_Department] HeadOfDepartment 
 INNER JOIN 
-       [dbo].[Application_Status] ApplicationStatus  
+       [dbo].[User_Details] UserDetails 
 ON 
-       BursaryApplicants.[BursaryApplicationStatusID] = ApplicationStatus.[ApplicationStatusID]
+       HeadOfDepartment.[UserID] = UserDetails.[UserID] 
+INNER JOIN 
+       [dbo].[Contact_Details] ContactDetails 
+ON 
+       ContactDetails.[ContactDetailsID] = UserDetails.[ContactDetailsID] 
 INNER JOIN
-       [dbo].[Student] Students      
+       [dbo].[Institute_Info] InstituteInfo
 ON
-       BursaryApplicants.[StudentID] = Students.[StudentID]
-INNER JOIN
-       [dbo].[User_Details] UserDetails
-ON
-       Students.[UserID] = UserDetails.[UserID]
-INNER JOIN
-       [dbo].[Contact_Details] ContactDetails
-ON
-       UserDetails.[ContactDetailsID] = ContactDetails.[ContactDetailsID]
- 
+       HeadOfDepartment.[InstituteID] = InstituteInfo.[InstituteID]

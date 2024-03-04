@@ -281,3 +281,13 @@ ALTER TABLE [dbo].[Document]
     ADD CONSTRAINT [UNQ_Document.BursaryApplicantID]
         UNIQUE ([BursaryApplicantID])
 GO
+
+-- Contact Details Constraints
+ALTER TABLE [dbo].[Contact_Details]
+    ADD CONSTRAINT [UNQ_Contact_Details.Email]
+        UNIQUE ([Email])
+
+-- Unique university allocation
+-- Unique email
+
+--- bursary fund unique for year
